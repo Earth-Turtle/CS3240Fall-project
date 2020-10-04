@@ -1,0 +1,14 @@
+language: python
+python:
+- '3.8'
+install:
+- pip install -r requirements-travis.txt
+script:
+- python manage.py test
+deploy:
+  provider: heroku
+  api_key:
+    secure: x06XA9NQeoM8KzN4nLwq6/BSfgLOMvDyHhVF47u0i42dC5oK9ByqlDGuko2aLvkiQ8sI50u1yinfz3MCXzoAeM1fCg7nQZitsghQ65MPTlFP2qZgMOaILhEB5HH0K1xSpMmhY/kt7smwaUEOiMPIaRdn482H9pLyANu52hD7oWVuT0y23z4IozdnQK04CElwfxEmQ23JtSyi+ZqhhT2esQZDeulim74tKrU4cOSiQhcePvgjeVZ9E56ReYYiknG+nbe0oxyh6bhfa0xnAlOjM+uHdYG9hRFUFkcqLBzC+AdKSYW7AsBUfa4pLiEVUjacAAUp+huGRtT8P6wKp0h1EleyNrzmGIw752uJ+3DTmhYWeEY3Ij4iPY5tgDBX1vtHnUsmzPK2WgoNF8NU8wvEG55TdKOFxytYkhm4KUzkZGWsoENAwHT9ItIL6LRFuGTBDV5g6ToIFGaOSzKdGYfd0Z9o+5F/5OvXamo/MVppXYcs82ijZBqLGE8+tQWfYFUWiwIRprP/BIW7i7w31BtX8sWK6NzzY9UZfRbmmlj2+6u6lpdZL4p0CglKk3vMhIugZEXnBdbYyle3/1lEwntV4PWTBUZqTGVn5n2Y21I8HIQIneaaDHP+hMXdU4OQewI3j16jY+X39yBYboNd0vV6wRFN4o4d3RGyB9HOt3A90tA=
+  app: honda-civic-connect
+true:
+  repo: uva-cs3240-f20/1-13

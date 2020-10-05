@@ -7,6 +7,7 @@ from home import views
 
 urlpatterns = [
     path('', views.home_view, name='home'),
+    path('accounts/', views.accounts_view, name='accounts')
 
     
 ]

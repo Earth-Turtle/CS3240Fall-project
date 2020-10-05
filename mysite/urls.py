@@ -7,9 +7,13 @@ from home import views
 
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='home/index.html')),
-    path('accounts/', views.accounts_view, name='accounts'),
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+    #ex: '/'
+    path('', views.IndexView.as_view(), name='home'),
+
+    #ex: '/admin/'
+    path('admin/', admin.site.urls, name='admin'),
+
+    #ex: '/accounts/'
+    path('accounts/', include('allauth.urls'), name='accounts'),
     
 ]

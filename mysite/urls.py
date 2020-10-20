@@ -15,5 +15,11 @@ urlpatterns = [
 
     #ex: '/accounts/'
     path('accounts/', include('allauth.urls'), name='accounts'),
+
+    path('categories/', views.categories, name='categories'),
+    path('categories/<slug:categorySlug>/', views.singleCategory, name='singleCategory'),
+    path('categories/<slug:categorySlug>/<slug:postSlug>/', views.comment, name='comment'),
+    path('post-comment/', views.postComment, name='postComment'),
+
     
 ]

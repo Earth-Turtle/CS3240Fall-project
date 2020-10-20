@@ -1,135 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
+<title>Template: Comments</title>
+
+
+<style>
+.heading {
+    margin: 10px;
+}
+.button_container{
+  font-weight: 900;
+  background-color: rgba(84, 151, 45, 0.938);
+}
+</style>
 
 <body>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        
-        
-        <style>
-        .heading {
-            margin: 10px;
-        }
-        .footer_container{
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(69, 169, 216, 0.938)
-          }
-        
-        </style>
-                  
+    <div class="container">
+        <div class="row">
+            <div class="heading">
+                <h4>Templates</h4>
+            </div>
         </div>
+        <div class="row">
+            <table class="table table-hover">
 
-        <body>
-            <div class="container">
-                <div class="row">
-                    <div class="heading">
-                        <h4>Templates</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <table class="table table-hover">
-        
-                        <tbody>
-                        <tr>
-                            <td>Title</td>
-                            <td>{{post.title}}</td>
-                        </tr>
-                        <tr>
-                            <td>Post</td>
-                            <td>{{post.text}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        
-            <div class="container">
-                <br>
-                <br>
-                <br>
-                <h5>Comments</h5>
-                <div class="row">
-        
-                    {% if comments %}
-                        {% for i in comments %}
-                            <div class="container"> {{ i.text }} </div>
-                        {% endfor %}
-                    {% endif %}
-        
-                </div>
-            </div>
-            <div class="container">
-                <br>
-                <br>
-                <br>
-                <h5>Want to add a Comment?</h5>
-                <form method="POST" action="/post-comment/">
-                    {% csrf_token %}
-                    <input type="hidden" name="post" value="{{post.id}}"/>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Comments</label>
-                      <textarea name="comments"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        </body>
-
-        <body>
-        
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-                <a class="navbar-brand" href="" googl="true">Honda Civics</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <a class="navbar-brand" href="http://127.0.0.1:8000/categories" googl="true">Templates</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                </button>
-          
-                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href=""> Profile <span class="sr-only">(current)</span></a>
-                    </li>
-        
-                  </ul>
-                </div>
-              </nav>
-            
-        
-        
-          </div>
+                <tbody>
+                <tr>
+                    <td>Title</td>
+                    <td>{{post.title}}</td>
+                </tr>
+                <tr>
+                    <td>Post</td>
+                    <td>{{post.text}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        </html>
-        </body>
-
-
     </div>
 
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <h5>Comments</h5>
+        <div class="row">
 
-    <div class="footer_container">
-        <!-- Footer -->
-        <footer class="page-footer font-small blue">
-            
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright, Honda Civics
-      
+            {% if comments %}
+                {% for i in comments %}
+                    <div class="container"> {{ i.text }} </div>
+                {% endfor %}
+            {% endif %}
+
         </div>
-        <!-- Copyright -->
-              
-        </footer>
-        <!-- Footer -->
-          
-</html>
+    </div>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <h5>Want to add a Comment?</h5>
+        <form method="POST" action="/post-comment/">
+            {% csrf_token %}
+            <input type="hidden" name="post" value="{{post.id}}"/>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Comments</label>
+              <textarea name="comments"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+
+{% endblock content %}

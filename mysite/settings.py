@@ -153,5 +153,5 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfile')
 STATIC_URL = '/static/'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+django_heroku.settings(locals(), test_runner=False)
 

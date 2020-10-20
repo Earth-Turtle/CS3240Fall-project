@@ -1,3 +1,5 @@
+<!--Base HTML Code
+    This HTML will load on every page.-->
 <!doctype html>
 {% load socialaccount %}
 <html lang="en">
@@ -13,32 +15,10 @@
 
   </head>
 
-    <style>
-    .h_container{
-      text-align: center;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      position: relative;
-      z-index: 1000;
-      display: inline-block,
-    }
-    .footer_container{
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(69, 169, 216, 0.938)
-      }
-    .button_container{
-      font-weight: 900;
-      background-color: rgba(84, 151, 45, 0.938);
-    }
-    .our_page_container{ width: 100%; max-width: 600px; margin: 100px auto;}
-    </style>
+
 
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
             <a class="navbar-brand" href="/" googl="true">Honda Civics</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -65,19 +45,13 @@
 
 {% block content %}
 {% endblock content %}
-
-    <div class="footer_container">
       <!-- Footer -->
-      <footer class="page-footer font-small blue">
+      <footer class="page-footer font-small fixed-bottom bg-light">
 
           <!-- Copyright -->
-          <div class="footer-copyright text-center py-3">© 2020 Copyright, Honda Civics
-
-          </div>
-          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3">© 2020 Copyright, Honda Civics</div>
 
         </footer>
-        <!-- Footer -->
-    </div>
+
 </body>
 </html>

@@ -53,6 +53,7 @@ def postComment(request):
     post = dataIn['post']
     name = dataIn['name']
     comments = dataIn['comments']
+    
 
 
     commentModel = Comment()

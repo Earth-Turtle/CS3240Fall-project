@@ -16,10 +16,20 @@ urlpatterns = [
     #ex: '/accounts/'
     path('accounts/', include('allauth.urls'), name='accounts'),
 
+    #ex: '/categories/'
     path('categories/', views.categories, name='categories'),
+
+    #ex: '/categories/Education/'
     path('categories/<slug:categorySlug>/', views.singleCategory, name='singleCategory'),
+
+    #ex: '/categories/Education/Education0/'
     path('categories/<slug:categorySlug>/<slug:postSlug>/', views.comment, name='comment'),
+
+    #??? unsure where this maps to
     path('post-comment/', views.postComment, name='postComment'),
+
+    path('my-profile/', views.myProfile, name='myProfile'),
+    path('my-profile-action/', views.myProfileAction, name='myProfileAction'),
 
     
 ]

@@ -1,0 +1,57 @@
+<!--Base HTML Code
+    This HTML will load on every page.-->
+<!doctype html>
+{% load socialaccount %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+  </head>
+
+
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="/" googl="true">Honda Civics</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="/categories" googl="true">Templates</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/my-profile"> Profile <span class="sr-only">(current)</span></a>
+                </li>
+
+              </ul>
+              <div class="button_container">
+              <form class="form-inline my-2 my-lg-0">
+                <a class="btn" href="{% provider_login_url 'google' %}" googl="true">Click to Login</a>
+              </form>
+            </div>
+            </div>
+          </nav>
+
+{% block content %}
+{% endblock content %}
+      <!-- Footer -->
+      <footer class="page-footer font-small fixed-bottom bg-light">
+
+          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3">© 2020 Copyright, Honda Civics</div>
+
+        </footer>
+
+</body>
+</html>

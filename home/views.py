@@ -6,6 +6,7 @@ from .models import Category
 from .models import Post
 from .models import Comment
 
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -61,3 +62,26 @@ def postComment(request):
     commentModel.save()
 
     return redirect('/categories/')
+
+def myProfile(request):
+
+    data = {}
+    data['email'] = request.user.email
+    data['first_name'] = request.user.first_name
+    data['last_name'] = request.user.last_name
+
+    return render(request,"my-profile.html",data)
+
+
+def myProfileAction(request):
+    dataIn = request.POST.copy()
+
+    userModel = User.objects.get(id=request.user.id)
+    userModel.first_name = dataIn['first_name']
+    userModel.last_name = dataIn['last_name']
+    userModel.email = dataIn['email']
+    # userModel.phone = dataIn['phone']
+    userModel.save()
+    ###update here
+
+    return redirect('/')

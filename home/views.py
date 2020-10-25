@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.views import generic
 
 from .models import Category
@@ -61,7 +62,8 @@ def postComment(request):
     commentModel.text = comments
     commentModel.save()
 
-    return redirect('/categories/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 
 def myProfile(request):
 

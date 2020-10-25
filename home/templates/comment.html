@@ -68,7 +68,11 @@
               <label for="exampleInputPassword1">Comments</label>
               <textarea name="comments"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
+            {% if user.is_authenticated %}
             <button type="submit" class="btn btn-primary">Submit</button>
+            {% else %}
+            <button type="submit" aria-disabled="true" class="btn btn-primary" disabled>Log in to comment!</button>
+            {% endif %}
         </form>
     </div>
 </body>

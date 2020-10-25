@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 from django.views import generic
 
 from .models import Category
 from .models import Post
 from .models import Comment
 
-from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -63,8 +61,7 @@ def postComment(request):
     commentModel.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
-
+    
 def myProfile(request):
 
     data = {}

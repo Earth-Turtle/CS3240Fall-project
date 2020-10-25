@@ -28,7 +28,6 @@ urlpatterns = [
     #??? unsure where this maps to
     path('post-comment/', views.postComment, name='postComment'),
 
-
     path('my-profile/', views.myProfile, name='myProfile'),
     path('my-profile-action/', views.myProfileAction, name='myProfileAction'),
 

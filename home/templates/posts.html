@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if posts %}
+<title>Templates for {{ category }} Category</title>
+{% endif %}
+
 <style>
 .h_container{
   text-align: center;

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load socialaccount %}
 {% block content %}
-<title>Template: Comments</title>
+<title>{{ get_category }} Template: {{ post }}</title>
 
 
 <style>
@@ -57,7 +58,7 @@
             {% if user.is_authenticated %}
             <button type="submit" class="btn btn-primary">Submit</button>
             {% else %}
-            <button type="submit" aria-disabled="true"  class="btn btn-primary" disabled  >Log in to comment!</button>
+            <a class="btn btn-outline-success" href="{% provider_login_url 'google' %}" googl="true">Login to post a comment!</a>
             {% endif %}
         </form>
     </div>

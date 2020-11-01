@@ -28,7 +28,7 @@ SECRET_KEY = 'k+ye(unpaw+n%ao(k#050384ko$le7su6y6r+p=c0z4x%quq98'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','honda-civic-connect.herokuapp.com']
 
 
 # Application definition
@@ -84,10 +84,17 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default': {                                      
+        # 'ENGINE': 'django.db.backends.sqlite3',   # Old SQLite database
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'PASSWORD':'1213252e06c6b9f5893c285268a0c5581f703cb8261d9d014ffd848e2350a97b',
+        'USER': 'rszcsxrzupucrl',
+        'PORT': '5432',
+        'HOST': 'ec2-52-200-134-180.compute-1.amazonaws.com',
+        'NAME': 'd45u3ocid5s1vl'
     }
+
 }
 
 

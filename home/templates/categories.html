@@ -12,13 +12,7 @@
 
 
       <div class="h_container">
-      {% if user.is_authenticated %}
-      <p>Welcome, {{ user.username }} !</p>
-     
-      {% else %}
-      <h1>Civic Connect - Honda Civics</h1>
-    
-      {% endif %}
+      
 
 
         <style>
@@ -41,29 +35,112 @@
         }
         .our_page_container{ text-align: center; position: relative; width: 100%; max-width: 600px; margin: 100px auto;}
 
+        .head {
+        height: 100;
+        text-align: center;
+        }
+
+        .head1{
+            text-align: center;
+            color: rgb(52,58,64);
+            
+        }
+
         </style>
 
         </div>
 
-        <body>
-            <div class="container">
-                <div class="row">
-                    <div class="heading">
-                        <h4>Categories Listing</h4>
-                    </div>
-                </div>
-                <div class="row">
-
-                    {% if catgories %}
-                        {% for i in catgories %}
-                            <div class="container"><a href="{{ i.slug }}"> {{ i.title }} </a></div>
-                        {% endfor %}
-                    {% endif %}
-
-                </div>
-            </div>
-        </body>
       </div>
+
+        <!-- Page Content -->
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <div class="head">
+    <header class="jumbotron my-">
+        {% if user.is_authenticated %}
+
+    <div class="head1">
+      <p>Welcome, {{ user.username }} !</p>
+      <h2>Civic Connect - Honda Civics</h2>
+      <h5>View Templates Below!</h5>
+    </div>
+
+      {% else %}
+
+      <h2>Civic Connect - Honda Civics</h2>
+      <a href="/accounts/google/login/" class="btn btn-primary btn-lg">Login!</a>
+      <br>
+      {% endif %}
+      </header>  
+    </div>
+    <!-- Page Features -->
+    <div class="row text-center">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-60">
+              <img class="card-img-top" src="https://www.flaticon.com/svg/static/icons/svg/3379/3379857.svg" height="256" width="256" 
+                style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px; padding-top: 15px" alt="">
+              <div class="card-footer">
+                <a href="Education/" class="btn btn-primary">Education</a>
+              </div>
+            </div>
+          </div>
+    
+
+      <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-60">
+              <img class="card-img-top" src="https://media.istockphoto.com/vectors/female-woman-feminism-protest-hand-icon-vector-vector-id1131677553?k=6&m=1131677553&s=612x612&w=0&h=RGtXjtPkOyxA_hQ5leJts_rIAI1Nnnugd5k4BWLxBgs=" height="256" width="340" 
+                style="padding-left: 15px; padding-right: 15px; padding-top: 15px" alt="">
+              <div class="card-footer">
+                <a href="WomensRights/" class="btn btn-primary">Women's Rights</a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-60">
+              <img class="card-img-top" src="https://www.flaticon.com/svg/static/icons/svg/3143/3143616.svg" height="256" width="256" 
+                style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px; padding-top: 15px" alt="">
+              <div class="card-footer">
+                <a href="Healthcare/" class="btn btn-primary">Health Care </a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-60">
+              <img class="card-img-top" src="https://www.flaticon.com/svg/static/icons/svg/3154/3154330.svg" height="256" width="256" 
+                style="padding-left: 20px; padding-right: 20px; padding-bottom: 20px; padding-top: 20px" alt="">
+              <div class="card-footer">
+                <a href="Black-Lives-Matter/" class="btn btn-primary">Black Lives Matter</a>
+              </div>
+            </div>
+          </div>
+
+          
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- <body>
+    <div class="container">
+        <div class="row">
+
+            {% if catgories %}
+                {% for i in catgories %}
+                    <div class="container"><a href="{{ i.slug }}"> {{ i.title }} </a></div>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+</body> -->
     </body>
 
 {% endblock content %}
+

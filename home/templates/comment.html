@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load socialaccount %}
 {% block content %}
-<title>Template: Comments</title>
+<title>{{ get_category }} Template: {{ post }}</title>
 
 
 <style>
@@ -37,26 +38,12 @@
         </div>
     </div>
 
+
     <div class="container">
         <br>
         <br>
         <br>
-        <h5>Comments</h5>
-        <div class="row">
-
-            {% if comments %}
-                {% for i in comments %}
-                    <div class="container"> {{ i.text }} </div>
-                {% endfor %}
-            {% endif %}
-
-        </div>
-    </div>
-    <div class="container">
-        <br>
-        <br>
-        <br>
-        <h5>Want to add a Comment?</h5>
+        <h5>Add a comment to share your expereince with this template and join the converstation!</h5>
         <form method="POST" action="/post-comment/">
             {% csrf_token %}
             <input type="hidden" name="post" value="{{post.id}}"/>
@@ -71,9 +58,34 @@
             {% if user.is_authenticated %}
             <button type="submit" class="btn btn-primary">Submit</button>
             {% else %}
-            <button type="submit" aria-disabled="true" class="btn btn-primary" disabled>Log in to comment!</button>
+            <a class="btn btn-outline-success" href="{% provider_login_url 'google' %}" googl="true">Login to post a comment!</a>
             {% endif %}
         </form>
+    </div>
+
+
+    <div class="container">
+
+        
+        <br>
+        <br>
+        <br>
+        <table class="table">
+        <thead>
+            <tr>
+              <th>Name</th>
+              <th>Comments</th>
+            </tr>
+            </thead>
+        <tbody>
+
+            {% for getN in comments %}
+            <tr>
+              <td>{{getN.author}}</td>
+              <td>{{getN.text}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
     </div>
 </body>
 

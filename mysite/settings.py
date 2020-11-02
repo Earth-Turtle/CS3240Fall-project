@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'd45u3ocid5s1vl',
         'CONN_MAX_AGE': 300,
         'TEST': {
-            'NAME': 'TEST_DATABASE'
+            'NAME': 'd45u3ocid5s1vl_test',
         }
     }
 

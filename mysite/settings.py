@@ -92,7 +92,11 @@ DATABASES = {
         'USER': 'rszcsxrzupucrl',
         'PORT': '5432',
         'HOST': 'ec2-52-200-134-180.compute-1.amazonaws.com',
-        'NAME': 'd45u3ocid5s1vl'
+        'NAME': 'd45u3ocid5s1vl',
+        'CONN_MAX_AGE': 300,
+        'TEST': {
+            'NAME': 'TEST_DATABASE'
+        }
     }
 
 }

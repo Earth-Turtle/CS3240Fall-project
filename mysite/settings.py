@@ -95,6 +95,7 @@ DATABASES = {
         'NAME': 'd45u3ocid5s1vl',
         'CONN_MAX_AGE': 300,
         'TEST': {
+            'ENGINE': 'django.db.backends.sqlite'
             'NAME': 'd45u3ocid5s1vl_test',
         }
     }

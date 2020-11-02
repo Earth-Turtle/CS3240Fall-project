@@ -96,12 +96,13 @@ DATABASES = {
         'CONN_MAX_AGE': 300,
         'TEST': {
             'ENGINE': 'django.db.backends.sqlite',
-            'NAME': 'd45u3ocid5s1vl_test',
         }
     }
-
 }
 
+import sys
+if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

@@ -6,7 +6,6 @@ from django.views import generic
 from .models import Category
 from .models import Post
 from .models import Comment
-from .models import User
 
 
 # Create your views here.

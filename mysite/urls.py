@@ -31,5 +31,5 @@ urlpatterns = [
     path('my-profile/', views.myProfile, name='myProfile'),
     path('my-profile-action/', views.myProfileAction, name='myProfileAction'),
 
-    
+    path('logout/', views.logout, name='logout'),
 ]

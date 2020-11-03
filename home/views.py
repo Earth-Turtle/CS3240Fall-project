@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.views import generic
-
+from django.contrib.auth import logout
 from .models import Category
 from .models import Post
 from .models import Comment
@@ -74,3 +74,7 @@ def myProfileAction(request):
     ###update here
 
     return redirect('/')
+
+def logout(request):
+    #logout(request)
+    return render(request, "logout.html")

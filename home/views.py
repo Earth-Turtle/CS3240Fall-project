@@ -5,7 +5,8 @@ from django.views import generic
 
 from .models import Category
 from .models import Post
-from .models import Comment
+from .models import Comment, UserProfile
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -26,8 +27,7 @@ def categories(request):
 def singleCategory(request, categorySlug):
     get_category = Category.objects.get(slug=categorySlug)
     posts = list(Post.objects.filter(category=get_category))
-
-
+    
     return render(request,"posts.html",{'posts':posts, 'category':get_category})
 
 
@@ -65,11 +65,13 @@ def myProfile(request):
 
 def myProfileAction(request):
     dataIn = request.POST.copy()
-    userModel = User.objects.get(id=request.user.id)
+    print(request)
+    print(dataIn)
+    userModel = User.objects.get(email=dataIn['email'])
     userModel.first_name = dataIn['first_name']
     userModel.last_name = dataIn['last_name']
     userModel.email = dataIn['email']
-    # userModel.phone = dataIn['phone']
+    userModel.phone = dataIn['phone']
     userModel.save()
     ###update here
 

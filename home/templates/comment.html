@@ -43,7 +43,7 @@
         <br>
         <br>
         <br>
-        <h5>Add a comment to share your expereince with this template and join the converstation!</h5>
+        <h5>Add a comment to share your experience with this template and join the conversation!</h5>
         <form method="POST" action="/post-comment/">
             {% csrf_token %}
             <input type="hidden" name="post" value="{{post.id}}"/>
@@ -65,16 +65,14 @@
 
 
     <div class="container">
-
-        
         <br>
-        <br>
+        <h5>{{ comments|length }} Comments for {{ get_category }} Template: {{ post }}</h5>
         <br>
         <table class="table">
         <thead>
             <tr>
               <th>Name</th>
-              <th>Comments</th>
+              <th>Comment</th>
             </tr>
             </thead>
         <tbody>
@@ -86,6 +84,7 @@
             </tr>
             {% endfor %}
             </tbody>
+        </table>
     </div>
 </body>
 

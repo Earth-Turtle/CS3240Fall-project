@@ -40,6 +40,11 @@
 
 
     <div class="container">
+
+        <br>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="btn btn-primary" href="/contact/?text={{post.text}}" googl="true">Email Your Representative!</a>
+          </form>
         <br>
         <br>
         <br>
@@ -47,10 +52,14 @@
         <form method="POST" action="/post-comment/">
             {% csrf_token %}
             <input type="hidden" name="post" value="{{post.id}}"/>
+
+            
             <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
                 <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
             </div>
+
+            
             <div class="form-group">
               <label for="exampleInputPassword1">Comments</label>
               <textarea name="comments"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -60,6 +69,8 @@
             {% else %}
             <a class="btn btn-outline-success" href="{% provider_login_url 'google' %}" googl="true">Login to post a comment!</a>
             {% endif %}
+            <br>
+
         </form>
     </div>
 

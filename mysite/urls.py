@@ -31,5 +31,7 @@ urlpatterns = [
     path('my-profile/', views.myProfile, name='myProfile'),
     path('my-profile-action/', views.myProfileAction, name='myProfileAction'),
 
+    path('contact/', views.contact_form, name='contact')
+
     
 ]

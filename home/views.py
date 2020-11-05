@@ -56,35 +56,45 @@ def postComment(request):
     
 def myProfile(request):
     data = {}
+
+    # IF USER HAS USER PROFILE MADE, pull from that data
     try:
         profile = UserProfile.objects.get(user=request.user)
-        data['email'] = profile.user.email
-        data['first_name'] = profile.user.first_name
-        data['last_name'] = profile.user.last_name
+        data['email'] = profile.my_email
+        data['first_name'] = profile.my_first_name
+        data['last_name'] = profile.my_last_name
         data['phone'] = profile.phone
 
-    except: #NOT SECURE: FIND BETTER WAY TO DO THIS
+    # If user does not have user profile made, pull from the standard user data
+
+    except:  # change to extend exception?
         data['email'] = request.user.email
         data['first_name'] = request.user.first_name
         data['last_name'] = request.user.last_name
-    return render(request,"my-profile.html",data)
+    return render(request, "my-profile.html", data)
 
 
 def myProfileAction(request):
+
+    # Take in the data from the button press
     dataIn = request.POST.copy()
 
+    # If the profile has been made, get the objects from the profile
     try:
         new_profile = UserProfile.objects.get(user=request.user)
-    except:
-        new_profile = UserProfile()
-        new_profile.user = User.objects.get(id=request.user.id)
 
-    #NOTE: the following will only save phone number, not the other stuff; will figure out how to do that later
-    new_profile.user.first_name = dataIn['first_name']
-    new_profile.user.last_name = dataIn['last_name']
-    new_profile.user.email = dataIn['email']
-    new_profile.phone = dataIn['phone']
-    new_profile.save()
+    # If the profile has not been made, create a new profile that extends the default user
+    # profile from the authentication
+    except:
+        new_profile = UserProfile() # Create new user profile
+        new_profile.user = User.objects.get(id=request.user.id) # Populate user field with extension from default user
+
+    # NOTE: the following will only save phone number, not the other stuff; will figure out how to do that later
+    new_profile.my_first_name = dataIn['first_name']  # Save inputted first name in the my_first_name field
+    new_profile.my_last_name = dataIn['last_name']  # Save inputted last name in the my_last_name field
+    new_profile.my_email = dataIn['email']  # Save inputted email in the my_email field
+    new_profile.phone = dataIn['phone']  # Save inputted phone number in the phone field
+    new_profile.save()  # Save changes made to the UserProfile
     ###update here
 
     return redirect('/')

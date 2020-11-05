@@ -42,7 +42,14 @@ class Comment(models.Model):
     def __str__(self):
         return self.text
 
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    my_first_name = models.CharField(max_length=100, default="")
+    my_last_name = models.CharField(max_length=100, default="")
+    my_email = models.CharField(max_length=100, default="")
     phone = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.my_email
     

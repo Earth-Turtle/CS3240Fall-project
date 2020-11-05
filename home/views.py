@@ -89,8 +89,8 @@ def contact_form(request):
             dataIn = request.POST.copy()
             message = dataIn["message"]
             sender = dataIn["email"]
-            recipient_email = dataIn["recipient email"]
-            recipients = [r_email]
+            recipient_email = dataIn["recipient_email"]
+            recipients = [recipient_email]
 
             # print(subject)
             # print(message)

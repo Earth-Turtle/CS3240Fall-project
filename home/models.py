@@ -1,16 +1,17 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class User(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone = models.CharField(max_length=10, default="55555555555")
+# class User(models.Model):
+#     first_name = models.CharField(max_length=100)
+#     last_name = models.CharField(max_length=100)
+#     email = models.EmailField()
+#     phone = models.CharField(max_length=10, default="55555555555")
 
-    def __str__(self):
-        return self.first_name + ' ' + self.last_name
+#     def __str__(self):
+#         return self.first_name + ' ' + self.last_name
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -34,7 +35,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.CharField(max_length=100)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
 
@@ -42,4 +43,13 @@ class Comment(models.Model):
         return self.text
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    my_first_name = models.CharField(max_length=100, default="")
+    my_last_name = models.CharField(max_length=100, default="")
+    my_email = models.CharField(max_length=100, default="")
+    phone = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.my_email
     

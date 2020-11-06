@@ -25,7 +25,7 @@
 <div class="our_page_container">
   <div class="h_container">
   {% if user.is_authenticated %}
-  <p>Welcome, {{ user.username }} !</p>
+  <p>Welcome, {{ user.first_name }}!</p>
   {% else %}
   <h1>Civic Connect - Honda Civics</h1>
   {% endif %}

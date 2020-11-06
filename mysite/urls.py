@@ -6,6 +6,7 @@ from home import views
 
 
 
+
 urlpatterns = [
     #ex: '/'
     path('', views.IndexView.as_view(), name='home'),
@@ -30,6 +31,8 @@ urlpatterns = [
 
     path('my-profile/', views.myProfile, name='myProfile'),
     path('my-profile-action/', views.myProfileAction, name='myProfileAction'),
+
+    path('contact/', views.contact_form, name='contact')
 
     
 ]

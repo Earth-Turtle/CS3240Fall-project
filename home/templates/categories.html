@@ -58,15 +58,14 @@
     <!-- Jumbotron Header -->
     <div class="head">
     <header class="jumbotron my-">
-        {% if user.is_authenticated %}
 
-    <div class="head1">
-      <p>Welcome, {{ user.username }} !</p>
-      <h2>Civic Connect - Honda Civics</h2>
-      <h5>View Templates Below!</h5>
-    </div>
+    {% if user.is_authenticated %}
+      <div class="head1">
+        <h2>Civic Connect - Honda Civics</h2>
+        <h5>View Templates Below!</h5>
+      </div>
 
-      {% else %}
+    {% else %}
 
       <h2>Civic Connect - Honda Civics</h2>
       <a href="/accounts/google/login/" class="btn btn-primary btn-lg">Login!</a>

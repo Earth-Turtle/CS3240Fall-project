@@ -40,17 +40,26 @@
 
 
     <div class="container">
+
+        <br>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="btn btn-primary" href="/contact/?text={{post.text}}" googl="true">Email Your Representative!</a>
+          </form>
         <br>
         <br>
         <br>
-        <h5>Add a comment to share your expereince with this template and join the converstation!</h5>
+        <h5>Add a comment to share your experience with this template and join the conversation!</h5>
         <form method="POST" action="/post-comment/">
             {% csrf_token %}
             <input type="hidden" name="post" value="{{post.id}}"/>
+
+            
             <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
                 <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
             </div>
+
+            
             <div class="form-group">
               <label for="exampleInputPassword1">Comments</label>
               <textarea name="comments"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -60,21 +69,21 @@
             {% else %}
             <a class="btn btn-outline-success" href="{% provider_login_url 'google' %}" googl="true">Login to post a comment!</a>
             {% endif %}
+            <br>
+
         </form>
     </div>
 
 
     <div class="container">
-
-        
         <br>
-        <br>
+        <h5>{{ comments|length }} Comments for {{ get_category }} Template: {{ post }}</h5>
         <br>
         <table class="table">
         <thead>
             <tr>
               <th>Name</th>
-              <th>Comments</th>
+              <th>Comment</th>
             </tr>
             </thead>
         <tbody>
@@ -86,6 +95,7 @@
             </tr>
             {% endfor %}
             </tbody>
+        </table>
     </div>
 </body>
 

@@ -6,6 +6,7 @@ from home import views
 
 
 
+
 urlpatterns = [
     #ex: '/'
     path('', views.IndexView.as_view(), name='home'),

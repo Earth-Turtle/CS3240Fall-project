@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<title>Email Page</title>
 
 <style>
         .container{
@@ -30,22 +31,14 @@
 
 <div class="container ">
 
-
-
-
-
-  
-</style>
-
-
     <div class="container">
 
-        
         <div class="heading">
             <header class="heading">
                 <h4>Email Your Representative!</h4>
             <br>
-            </div>
+            </header>
+        </div>
     <form action="" method="POST">
         {% csrf_token %}
         <br>
@@ -65,13 +58,14 @@
             <label><label for="id_message">Message:</label></label>
             <p><textarea name="message" cols="40" rows="10" required="" id="id_message">{{text}}</textarea></p>
         </div>
-        <button type="reset" class="btn btn-secondary">Reset</button>
-         <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-secondary">Reset</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
 </div>
 
 
 {% endblock content %}
 
 
-# FORM TAKEN FROM: https://github.com/the-kodechamp/django_blog_tutorial/blob/master/blog/templates
+<!-- FORM TAKEN FROM: https://github.com/the-kodechamp/django_blog_tutorial/blob/master/blog/templates -->

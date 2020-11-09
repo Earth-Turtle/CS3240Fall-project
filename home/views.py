@@ -5,7 +5,7 @@ from django.views import generic
 from .forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 
-
+from .models import Suggestions
 from .models import Category
 from .models import Post
 from .models import Comment, UserProfile
@@ -124,8 +124,26 @@ def contact_form(request):
                 send_mail(subject, message, sender, recipients, fail_silently=True)
             except BadHeaderError:
                 return HttpResponse('Invalid header found')
-            return HttpResponse('Success...Your email has been sent')
+            return redirect("/thankyou/")
     return render(request,"contact.html",{'form':form, 'text': text})
 
 
 # Contact From/ Sendgrid template taken from: https://github.com/the-kodechamp/django_blog_tutorial/blob/master/blog/templates
+
+def feedback(request):
+    if request.method == "POST":
+        contact=Suggestions()
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        subject=request.POST.get('subject')
+        message=request.POST.get('message')
+        contact.name=name
+        contact.email=email
+        contact.subject=subject
+        contact.message=message 
+        contact.save()
+        return redirect("/thankyou/")
+    return render(request, 'feedback.html')
+
+def thankyou(request):
+    return render(request, "thankyou.html")

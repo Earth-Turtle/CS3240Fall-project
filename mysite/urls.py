@@ -26,7 +26,7 @@ urlpatterns = [
     #ex: '/categories/Education/Education0/'
     path('categories/<slug:categorySlug>/<slug:postSlug>/', views.comment, name='comment'),
 
-    #??? unsure where this maps to
+    #POST path for adding a comment
     path('post-comment/', views.postComment, name='postComment'),
 
     path('my-profile/', views.myProfile, name='myProfile'),

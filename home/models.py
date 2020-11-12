@@ -4,15 +4,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-# class User(models.Model):
-#     first_name = models.CharField(max_length=100)
-#     last_name = models.CharField(max_length=100)
-#     email = models.EmailField()
-#     phone = models.CharField(max_length=10, default="55555555555")
-
-#     def __str__(self):
-#         return self.first_name + ' ' + self.last_name
-
 class Category(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(null=True)
@@ -30,7 +21,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
 
 
 class Comment(models.Model):
@@ -53,10 +43,12 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.my_email
 
+
 class Suggestions(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField()
     subject = models.TextField()
     message = models.TextField(default="")
+
     def __str__(self):
         return self.name

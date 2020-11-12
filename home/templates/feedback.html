@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<title>Feedback Page</title>
+<title>Template Suggestion Page</title>
 
 <body>
 <style>
@@ -15,6 +15,11 @@
         text-align: center;
         padding-top: 50px;
     }
+
+     .button_container{
+      font-weight: 900;
+      background-color: rgba(84, 151, 45, 0.938);
+    }
 </style>
 
 <div class="head">
@@ -23,6 +28,7 @@
           <br>
           <br>
         <h5><b>Suggest a Template:</b></h5>
+      </div>
       </header>  
     </div>
 
@@ -31,19 +37,26 @@
         {% csrf_token %}
         <div class="form-group">
             <div class="form-group">
-                <label for="fname">Your Name</label>
+                <label for="name">Your Name</label>
                 <input name='name' type="text" class="form-control" placeholder="Your Name" required>
                 <br>
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="email">Email address</label>
                 <input name='email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <br>                
+                <br>
                 <label for="subject">Category or Topic</label>
-                <input name='subject' type="text" class="form-control" placeholder="Category or Topic" required>
+                <select class="form-control">
+                    {% for category in categories %}
+                    <option>{{category.title}}</option>
+                    {% endfor %}
+                    <option>Other</option>
+                </select>
                 <br>
                 <label for="message">Template Suggestion</label>
                 <textarea name='message' class="form-control" required></textarea>
                 <br>
             <input type="submit" class="btn btn-success btn-lg mt-1 m1-4">
+            </div>
+        </div>
     </form>
     </div>
 </body>

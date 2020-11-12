@@ -51,6 +51,9 @@ This HTML will load on every page.-->
 
 
                     </ul>
+                    {% if user.is_authenticated %}
+                    <a class="navbar-brand">Welcome, {{user.first_name}}!</a>
+                    {% else %}
                     <a class="navbar-brand" href="/admin" googl="true">Admin Login</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     </button>
@@ -61,6 +64,8 @@ This HTML will load on every page.-->
                             <a class="btn" href="{% provider_login_url 'google' %}" googl="true">Click to Login</a>
                         </form>
                     </div>
+                    {% endif %}
+
                 </div>
             </nav>
 

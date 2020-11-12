@@ -24,14 +24,14 @@ def accounts_view(request):
 
 def categories(request):
     catgories = list(Category.objects.all())
-    return render(request,"categories.html",{'catgories':catgories})
+    return render(request, "categories.html", {'catgories': catgories})
 
 
 def singleCategory(request, categorySlug):
     get_category = Category.objects.get(slug=categorySlug)
     posts = list(Post.objects.filter(category=get_category))
     
-    return render(request,"posts.html",{'posts':posts, 'category':get_category})
+    return render(request, "posts.html", {'posts': posts, 'category': get_category})
 
 
 def comment(request, categorySlug, postSlug):
@@ -39,14 +39,14 @@ def comment(request, categorySlug, postSlug):
     post = Post.objects.get(slug=postSlug)
     comments = list(Comment.objects.filter(post=post))
 
-    return render(request,"comment.html",{'post':post, 'comments':comments, 'category':get_category})
+    return render(request, "comment.html", {'post': post, 'comments': comments, 'category': get_category})
 
 
 def postComment(request):
-    dataIn = request.POST.copy()
-    post = dataIn['post']
-    name = dataIn['name']
-    comments = dataIn['comments']
+    data_in = request.POST.copy()
+    post = data_in['post']
+    name = data_in['name']
+    comments = data_in['comments']
 
     print("Debug:", post, name, comments)
     comment_model = Comment()
@@ -56,7 +56,8 @@ def postComment(request):
     comment_model.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-    
+
+
 def myProfile(request):
     data = {}
 
@@ -80,7 +81,7 @@ def myProfile(request):
 def myProfileAction(request):
 
     # Take in the data from the button press
-    dataIn = request.POST.copy()
+    data_in = request.POST.copy()
 
     # If the profile has been made, get the objects from the profile
     try:
@@ -89,16 +90,16 @@ def myProfileAction(request):
     # If the profile has not been made, create a new profile that extends the default user
     # profile from the authentication
     except:
-        new_profile = UserProfile() # Create new user profile
-        new_profile.user = User.objects.get(id=request.user.id) # Populate user field with extension from default user
+        new_profile = UserProfile()  # Create new user profile
+        new_profile.user = User.objects.get(id=request.user.id)  # Populate user field with extension from default user
 
     # NOTE: the following will only save phone number, not the other stuff; will figure out how to do that later
-    new_profile.my_first_name = dataIn['first_name']  # Save inputted first name in the my_first_name field
-    new_profile.my_last_name = dataIn['last_name']  # Save inputted last name in the my_last_name field
-    new_profile.my_email = dataIn['email']  # Save inputted email in the my_email field
-    new_profile.phone = dataIn['phone']  # Save inputted phone number in the phone field
+    new_profile.my_first_name = data_in['first_name']  # Save inputted first name in the my_first_name field
+    new_profile.my_last_name = data_in['last_name']  # Save inputted last name in the my_last_name field
+    new_profile.my_email = data_in['email']  # Save inputted email in the my_email field
+    new_profile.phone = data_in['phone']  # Save inputted phone number in the phone field
     new_profile.save()  # Save changes made to the UserProfile
-    ###update here
+    # update here
 
     return redirect('/')
 
@@ -126,25 +127,27 @@ def contact_form(request):
             except BadHeaderError:
                 return HttpResponse('Invalid header found')
             return redirect("/thankyou/")
-    return render(request,"contact.html",{'form':form, 'text': text})
+    return render(request, "contact.html", {'form': form, 'text': text})
 
 
 # Contact From/ Sendgrid template taken from: https://github.com/the-kodechamp/django_blog_tutorial/blob/master/blog/templates
 
 def feedback(request):
+    categories_list = list(Category.objects.all())
+
     if request.method == "POST":
-        contact=Suggestions()
-        name=request.POST.get('name')
-        email=request.POST.get('email')
-        subject=request.POST.get('subject')
-        message=request.POST.get('message')
-        contact.name=name
-        contact.email=email
-        contact.subject=subject
-        contact.message=message 
+        contact = Suggestions()
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        contact.name = name
+        contact.email = email
+        contact.subject = subject
+        contact.message = message
         contact.save()
         return redirect("/thankyou/")
-    return render(request, 'feedback.html')
+    return render(request, 'feedback.html', {'categories': categories_list})
 
 def thankyou(request):
     return render(request, "thankyou.html")

@@ -26,13 +26,15 @@ urlpatterns = [
     #ex: '/categories/Education/Education0/'
     path('categories/<slug:categorySlug>/<slug:postSlug>/', views.comment, name='comment'),
 
-    #??? unsure where this maps to
+    path('feedback/', views.feedback, name='feedback'),
+
+    #POST path for adding a comment
     path('post-comment/', views.postComment, name='postComment'),
 
     path('my-profile/', views.myProfile, name='myProfile'),
     path('my-profile-action/', views.myProfileAction, name='myProfileAction'),
 
+    path('thankyou/', views.thankyou, name='thankyou'),
     path('contact/', views.contact_form, name='contact')
 
-    
 ]

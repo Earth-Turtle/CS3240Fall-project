@@ -9,8 +9,8 @@
     margin: 10px;
 }
 .button_container{
-  font-weight: 900;
-  background-color: rgba(84, 151, 45, 0.938);
+    font-weight: 900;
+    background-color: rgba(84, 151, 45, 0.938);
 }
 </style>
 
@@ -44,7 +44,7 @@
         <br>
         <form class="form-inline my-2 my-lg-0">
             <a class="btn btn-primary" href="/contact/?text={{post.text}}" googl="true">Email Your Representative!</a>
-          </form>
+        </form>
         <br>
         <br>
         <br>
@@ -55,19 +55,19 @@
 
             
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
-                <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
+                <label for="input_name">Name</label>
+                <input name="name" type="text" class="form-control" id="input_name" placeholder="Enter name" required>
             </div>
 
             
             <div class="form-group">
-              <label for="exampleInputPassword1">Comments</label>
-              <textarea name="comments"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="exampleInputPassword1">Comments</label>
+                <textarea name="comments"  class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
             </div>
             {% if user.is_authenticated %}
-            <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             {% else %}
-            <a class="btn btn-outline-success" href="{% provider_login_url 'google' %}" googl="true">Login to post a comment!</a>
+                <a class="btn btn-outline-success" href="{% provider_login_url 'google' %}" googl="true">Login to post a comment!</a>
             {% endif %}
             <br>
 
@@ -82,16 +82,16 @@
         <table class="table">
         <thead>
             <tr>
-              <th>Name</th>
-              <th>Comment</th>
+                <th>Name</th>
+                <th>Comment</th>
             </tr>
             </thead>
         <tbody>
 
             {% for getN in comments %}
             <tr>
-              <td>{{getN.author}}</td>
-              <td>{{getN.text}}</td>
+                <td>{{getN.author}}</td>
+                <td>{{getN.text}}</td>
             </tr>
             {% endfor %}
             </tbody>

@@ -52,4 +52,11 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.my_email
-    
+
+class Suggestions(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    subject = models.TextField()
+    message = models.TextField(default="")
+    def __str__(self):
+        return self.name

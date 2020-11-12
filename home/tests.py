@@ -28,3 +28,8 @@ class PostCreationTests(TestCase):
         response = self.client.get(reverse('comment', args=(test_cat.slug, test_post.slug,)))
         self.assertEqual(response.status_code, 200)
 
+class CommentPostTests(TestCase):
+
+    def errorOnBlankComment(self):
+        # TODO: implement this test
+        self.assertTrue(True)

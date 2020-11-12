@@ -28,7 +28,7 @@ urlpatterns = [
 
     path('feedback/', views.feedback, name='feedback'),
 
-    #??? unsure where this maps to
+    #POST path for adding a comment
     path('post-comment/', views.postComment, name='postComment'),
 
     path('my-profile/', views.myProfile, name='myProfile'),

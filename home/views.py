@@ -48,6 +48,7 @@ def postComment(request):
     name = dataIn['name']
     comments = dataIn['comments']
 
+    print("Debug:", post, name, comments)
     comment_model = Comment()
     comment_model.post = Post.objects.get(id=post)
     comment_model.author = name

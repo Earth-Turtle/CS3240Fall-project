@@ -18,7 +18,7 @@ class CategoryCreationTests(TestCase):
     def testCategoryCreation(self):
         test = createCategory("Education", "Education")
         response = self.client.get(reverse('singleCategory', args=(test.slug,)))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 301)
 
 class PostCreationTests(TestCase):
 
@@ -26,7 +26,7 @@ class PostCreationTests(TestCase):
         test_cat = createCategory("Education", "Education")
         test_post = createPost("Education Template 1", "asdf", test_cat, timezone.now(), "Education0")
         response = self.client.get(reverse('comment', args=(test_cat.slug, test_post.slug,)))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 301)
 
 class CommentPostTests(TestCase):
 

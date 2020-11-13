@@ -5,13 +5,11 @@ from django.views import generic
 from .forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 
-from .models import Suggestions
-from .models import Category
-from .models import Post
-from .models import Comment, UserProfile
+from .models import Suggestions, Comment, UserProfile, Post, Category
 from django.contrib.auth.models import User
 
-
+from django.conf import settings
+from django.contrib.auth import logout
 # Create your views here.
 
 
@@ -19,7 +17,7 @@ class IndexView(generic.TemplateView):
     template_name = 'home/index.html'
 
 def accounts_view(request):
-    return render(request, "accounts.html")
+        return render(request, "accounts.html")
 
 
 def categories(request):
@@ -78,6 +76,7 @@ def myProfile(request):
     return render(request, "my-profile.html", data)
 
 
+
 def myProfileAction(request):
 
     # Take in the data from the button press
@@ -118,10 +117,6 @@ def contact_form(request):
             recipient_email = dataIn["recipient_email"]
             recipients = [recipient_email]
 
-            # print(subject)
-            # print(message)
-            # print(sender)
-            # print(recipient_email)
             try:
                 send_mail(subject, message, sender, recipients, fail_silently=True)
             except BadHeaderError:
@@ -151,3 +146,10 @@ def feedback(request):
 
 def thankyou(request):
     return render(request, "thankyou.html")
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, "logout.html")
+
+

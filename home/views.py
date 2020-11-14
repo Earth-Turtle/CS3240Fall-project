@@ -58,7 +58,9 @@ def postComment(request):
 
 def myProfile(request):
     data = {}
-
+    data['first_name'] = request.user.first_name
+    data['last_name'] = request.user.last_name
+    data['email'] = request.user.email
     # IF USER HAS USER PROFILE MADE, pull from that data
     try:
         profile = UserProfile.objects.get(user=request.user)
@@ -103,20 +105,21 @@ def myProfileAction(request):
     return redirect('/')
 
 def contact_form(request):
-    form = ContactForm()
+    email = request.user.email
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    form = ContactForm(initial={'email': email, 'name': first_name + ' ' + last_name})
     text = request.GET.get('text', '')
-
+    text = 'To whom it may concern, name is '+ first_name + ' ' + last_name+'.'+'\n \n \b'+text+'\n\nSincerely, \n'+ first_name + ' ' + last_name
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
             subject = f'Message from {form.cleaned_data["name"]}'
-
             dataIn = request.POST.copy()
             message = dataIn["message"]
             sender = dataIn["email"]
             recipient_email = dataIn["recipient_email"]
             recipients = [recipient_email]
-
             try:
                 send_mail(subject, message, sender, recipients, fail_silently=True)
             except BadHeaderError:
@@ -152,4 +155,5 @@ def logout_view(request):
     logout(request)
     return render(request, "logout.html")
 
-
+def generate(request):
+    return render(request, "generate.html")

@@ -17,19 +17,28 @@ class CategoryCreationTests(TestCase):
 
     def testCategoryCreation(self):
         test = createCategory("Education", "Education")
-        response = self.client.get(reverse('singleCategory', args=(test.slug,)))
-        self.assertEqual(response.status_code, 301)
+        response = self.client.get(reverse('singleCategory', args=(test.slug,)), secure=True)
+        self.assertEqual(response.status_code, 200)
 
 class PostCreationTests(TestCase):
 
     def testPostCreation(self):
         test_cat = createCategory("Education", "Education")
         test_post = createPost("Education Template 1", "asdf", test_cat, timezone.now(), "Education0")
-        response = self.client.get(reverse('comment', args=(test_cat.slug, test_post.slug,)))
-        self.assertEqual(response.status_code, 301)
+        response = self.client.get(reverse('comment', args=(test_cat.slug, test_post.slug,)), secure=True)
+        self.assertEqual(response.status_code, 200)
 
-class CommentPostTests(TestCase):
+class CommentModelTests(TestCase):
+    
+    @classmethod
+    def setUpTestData(cls):
+        newCategory = createCategory("Education", "Education")
+        newPost = createPost("Edu template 1", "test text", newCategory, timezone.now(), "Education0")
+        testComment = Comment.objects.create(post=newPost, author="test author", text="test comment body", created_date=timezone.now())
 
-    def errorOnBlankComment(self):
-        # TODO: implement this test
-        self.assertTrue(True)
+    def test_name_label(self):
+        comment = Comment.objects.get(id=1)
+        field_label = comment._meta.get_field('author').verbose_name
+        self.assertEqual(field_label, 'author')
+
+

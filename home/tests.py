@@ -41,4 +41,19 @@ class CommentModelTests(TestCase):
         field_label = comment._meta.get_field('author').verbose_name
         self.assertEqual(field_label, 'author')
 
+    def test_text_label(self):
+        comment = Comment.objects.get(id=1)
+        field_label = comment._meta.get_field('text').verbose_name
+        self.assertEqual(field_label, 'text')
+
+    def test_post_label(self):
+        comment = Comment.objects.get(id=1)
+        field_label = comment._meta.get_field('post').verbose_name
+        self.assertEqual(field_label, 'post')
+
+    def test_created_date_label(self):
+        comment = Comment.objects.get(id=1)
+        field_label = comment._meta.get_field('created_date').verbose_name
+        self.assertEqual(field_label, 'created date')
+
 

@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'k+ye(unpaw+n%ao(k#050384ko$le7su6y6r+p=c0z4x%quq98'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','honda-civic-connect.herokuapp.com']
 
@@ -62,9 +62,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'mysite.urls'
 
 # Security settings
-SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
+CSRF_COOKIE_SECURE = False
 SECURE_HSTS_SECONDS = 3600
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True

@@ -39,6 +39,7 @@ urlpatterns = [
 
     path('thankyou/', views.thankyou, name='thankyou'),
     path('contact/', views.contact_form, name='contact'),
+    path('generate/', views.generate, name='generate'),
 
     path('logout/', views.logout_view, name='logout'),
 ]

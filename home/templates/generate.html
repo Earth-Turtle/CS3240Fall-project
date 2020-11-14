@@ -36,7 +36,7 @@
 
         <div class="heading">
             <header class="heading">
-                <h4>Email Your Representative!</h4>
+                <h4>Generate Email</h4>
             <br>
             </header>
         </div>
@@ -56,11 +56,10 @@
             </div>
         {% endfor %}
         <div class="form-group">
-            <label><label for="id_message">Generated Message:</label></label>
-            <p><textarea name="message" cols="40" rows="10" required="" id="id_message">{{text}}</textarea></p>
+            <label><label for="id_message">Generated Email:</label></label>
+            <p><textarea name="message" cols="40" rows="10" id="id_message">{{text}}</textarea></p>
         </div>
-        <button type="reset" class="btn btn-secondary">Reset</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-primary" href="/contact" googl="true">Generate Email</a>
     </form>
 
 </div>

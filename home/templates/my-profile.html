@@ -30,11 +30,17 @@
         </div>
         <div class="form-group">
             <label >Email</label>
-            <input type="email" value="{{email}}" class="form-control" name="email" placeholder="Email Address">
+            <input type="text" value="{{email}}" class="form-control" name="email" placeholder="Email Address">
         </div>
         <div class="form-group">
-            <label>Phone</label>
-            <input type="text" value="{{phone}}"class="form-control" name="phone" placeholder="Phone Number">
+            <label>Phone</label><br/>
+            <input id="Phone" type="tel" value="{{phone}}" class="form-control" placeholder="Phone number without dashes" name="phone" pattern="^\d{3}\d{3}\d{4}$" required>
+
+            <!-- <input type="tel" id="phone" value="{{phone}}" class="form-control" name="phone" placeholder="Phone Number"> -->
+            <!-- <div class="col-sm-3">
+                <small id="phone" class="text-danger">
+                Must be in 1234567890 format.
+            <br> -->
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

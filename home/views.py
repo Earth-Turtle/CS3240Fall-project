@@ -110,7 +110,7 @@ def contact_form(request):
     last_name = request.user.last_name
     form = ContactForm(initial={'email': email, 'name': first_name + ' ' + last_name})
     text = request.GET.get('text', '')
-    text = 'To whom it may concern, name is '+ first_name + ' ' + last_name+'.'+'\n \n \b'+text+'\n\nSincerely, \n'+ first_name + ' ' + last_name
+    text = 'To whom it may concern, name is '+ first_name + ' ' + last_name+'.'+'\n\n\b'+text+'\n\nSincerely, \n'+ first_name + ' ' + last_name
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -156,4 +156,19 @@ def logout_view(request):
     return render(request, "logout.html")
 
 def generate(request):
-    return render(request, "generate.html")
+    email = request.user.email
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+
+    text = request.GET.get('text', '')
+    text = 'To whom it may concern, name is '+ first_name + ' ' + last_name+'.'+'\n\n\b'+text+'\n\nSincerely, \n'+ first_name + ' ' + last_name
+    if request.method == 'POSTED':
+        if form.is_valid():
+            dataIn = request.POSTED.copy()
+            message = dataIn["message"]
+            try:
+                send_mail(subject, message, fail_silently=True)
+            except BadHeaderError:
+                return HttpResponse('Invalid header found')
+            return redirect("/thankyou/")
+    return render(request, "generate.html", { 'text': text})   

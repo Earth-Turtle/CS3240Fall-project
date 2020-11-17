@@ -6,7 +6,9 @@
 
 <style>
 .heading {
-    margin: 10px;
+    height: 100px;
+    padding-top: 90px;
+    padding-bottom: 50px;
 }
 .button_container{
     font-weight: 900;
@@ -18,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="heading">
-                <h4>Templates</h4>
+                <h4>Civic Connect - View {{post.title}}</h4>
             </div>
         </div>
         <div class="row">
@@ -31,8 +33,13 @@
                 </tr>
                 <tr>
                     <td>Post</td>
-                    <td>{{post.text}}</td>
+                    <td style="white-space:pre-wrap; word-wrap:break-word">{{post.text}}</td>
                 </tr>
+                <tr><td colspan="100%">
+                    <form class="form-inline my-2 my-lg-0">
+                        <a class="btn btn-primary" href="/generate/?text={{post.text}}" googl="true">Generate Your Template!</a>
+                    </form>
+                </td></tr>
                 </tbody>
             </table>
         </div>
@@ -40,16 +47,6 @@
 
 
     <div class="container">
-
-        <br>
-        <!-- <form class="form-inline my-2 my-lg-0">
-            <a class="btn btn-primary" href="/contact/?text={{post.text}}" googl="true">Email Your Representative!</a>
-        </form> -->
-        <br>
-        <form class="form-inline my-2 my-lg-0">
-            <a class="btn btn-primary" href="/generate/?text={{post.text}}" googl="true">Generate Email</a>
-        </form>
-        <br>
         <br>
         <h5>Add a comment to share your experience with this template and join the conversation!</h5>
         <form method="POST" action="/post-comment/">

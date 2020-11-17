@@ -2,8 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-# Create your models here.
-
+# Category Model: For creating policy categories
 class Category(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(null=True)
@@ -12,6 +11,7 @@ class Category(models.Model):
         return self.title
 
 
+# Post Model: For creating templates within categories
 class Post(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
@@ -23,6 +23,7 @@ class Post(models.Model):
         return self.title
 
 
+# Comment Model: For creating comments about a particular template
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     author = models.CharField(max_length=100)
@@ -33,17 +34,19 @@ class Comment(models.Model):
         return self.text
 
 
+# UserProfile Model: For associating custom user data with Google authenticated user profiles
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     my_first_name = models.CharField(max_length=100, default="")
     my_last_name = models.CharField(max_length=100, default="")
     my_email = models.CharField(max_length=100, default="")
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=12)
 
     def __str__(self):
         return self.my_email
 
 
+# Suggestions Model: For creating templates with which users can suggest to be made into new templates
 class Suggestions(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField()

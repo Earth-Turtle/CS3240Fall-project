@@ -1,23 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<title>Profile Page: {{ user.username }}</title>
-
-<style>
-    .heading {
-        margin: 10px;
-    }
-
-    .button_container{
-        font-weight: 900;
-        background-color: rgba(84, 151, 45, 0.938);
-    }
-
-</style>
+<title>Profile Page: {{ first_name }} {{ last_name }}</title>
 <br>
 <br>
 <br>
 <div class="container">
+    <h2>Civic Connect - Update User Profile</h2>
+    <br>
     <form method="POST" action="/my-profile-action/">
         {% csrf_token %}
         <div class="form-group">
@@ -34,13 +24,10 @@
         </div>
         <div class="form-group">
             <label>Phone</label><br/>
-            <input id="Phone" type="tel" value="{{phone}}" class="form-control" placeholder="Phone number without dashes" name="phone" pattern="^\d{3}\d{3}\d{4}$" required>
+            <input id="Phone" type="tel" value="{{phone}}" class="form-control" placeholder="Enter in format XXX-XXX-XXXX"
+                   name="phone" pattern="^\d{3}-\d{3}-\d{4}$" oninvalid="this.setCustomValidity('Please enter your phone number in the correct format, XXX-XXX-XXXX')"
+                   oninput="this.setCustomValidity('')">
 
-            <!-- <input type="tel" id="phone" value="{{phone}}" class="form-control" name="phone" placeholder="Phone Number"> -->
-            <!-- <div class="col-sm-3">
-                <small id="phone" class="text-danger">
-                Must be in 1234567890 format.
-            <br> -->
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

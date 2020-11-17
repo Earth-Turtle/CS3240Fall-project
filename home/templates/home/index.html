@@ -24,7 +24,10 @@
     }
 </style>
 
+
 <div class="index_page_container">
+
+    <!-- Page Header -->
     <div class="h_container">
         {% if user.is_authenticated %}
             <h1>Welcome, {{ user.first_name }}!</h1>
@@ -35,6 +38,8 @@
         <br>
         <br>
     </div>
+
+    <!-- Application Information -->
     <br>
     <p>Civic Connect is an application that puts you in contact with your representatives at the federal, state, or local level!</p>
     <p>A Civic Connect account will allow you to access a number of pre-generated templates to contact your representatives in whichever way you see fit, whether that be by

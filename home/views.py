@@ -71,7 +71,7 @@ def myProfile(request):
 
     # If user does not have user profile made, pull from the standard user data
 
-    except:  # change to extend exception?
+    except UserProfile.DoesNotExist:  # change to extend exception?
         data['email'] = request.user.email
         data['first_name'] = request.user.first_name
         data['last_name'] = request.user.last_name

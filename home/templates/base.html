@@ -31,6 +31,7 @@ This HTML will load on every page.-->
     
     <body>
         <div id="body">
+            <!-- Navbar -->
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
                 <a class="navbar-brand btn btn-secondary" href="/" googl="true">Civic Connect</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,9 +79,12 @@ This HTML will load on every page.-->
                 </div>
             </nav>
 
+            <!-- Page Content -->
             {% block content %}
             {% endblock content %}
+
         </div>
+
         <!-- Footer -->
         <footer class="page-footer fixed-bottom font-small bg-light" id="footer">
 

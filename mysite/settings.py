@@ -65,6 +65,7 @@ ROOT_URLCONF = 'mysite.urls'
 # Security settings
 # MAKE SURE THE NEXT THREE ARE SET TO TRUE WHEN DEPLOYING TO MASTER
 SESSION_COOKIE_SECURE = True
+
 SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 3600
@@ -95,7 +96,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {                                      
+    'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',   # Old SQLite database
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
@@ -185,4 +186,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), test_runner=False)
-

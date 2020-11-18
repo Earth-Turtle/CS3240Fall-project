@@ -40,7 +40,11 @@ class UserProfile(models.Model):
     my_first_name = models.CharField(max_length=100, default="")
     my_last_name = models.CharField(max_length=100, default="")
     my_email = models.CharField(max_length=100, default="")
-    phone = models.CharField(max_length=12)
+    phone = models.CharField(max_length=12, default="")
+    address = models.CharField(max_length=100, default="")
+    city = models.CharField(max_length=100, default="")
+    state = models.CharField(max_length=100, default="")
+    zip_code = models.CharField(max_length=10, default="")
 
     def __str__(self):
         return self.my_email

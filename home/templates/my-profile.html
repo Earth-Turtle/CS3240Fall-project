@@ -27,8 +27,24 @@
             <input id="Phone" type="tel" value="{{phone}}" class="form-control" placeholder="Enter in format XXX-XXX-XXXX"
                    name="phone" pattern="^\d{3}-\d{3}-\d{4}$" oninvalid="this.setCustomValidity('Please enter your phone number in the correct format, XXX-XXX-XXXX')"
                    oninput="this.setCustomValidity('')">
-
         </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input type="text" value="{{address}}"  class="form-control" name="address" placeholder="Address">
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input type="text" value="{{city}}"  class="form-control" name="city" placeholder="City">
+        </div>
+        <div class="form-group">
+            <label>State</label>
+            <input type="text" value="{{state}}"  class="form-control" name="state" placeholder="State">
+        </div>
+        <div class="form-group">
+            <label>Zip Code</label>
+            <input type="text" value="{{zip_code}}"  class="form-control" name="zip_code" placeholder="Zip Code">
+        </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

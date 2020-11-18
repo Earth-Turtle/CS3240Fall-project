@@ -68,6 +68,10 @@ def myProfile(request):
         data['first_name'] = profile.my_first_name
         data['last_name'] = profile.my_last_name
         data['phone'] = profile.phone
+        data['address'] = profile.address
+        data['city'] = profile.city
+        data['state'] = profile.state
+        data['zip_code'] = profile.zip_code
 
     # If user does not have user profile made, pull from the standard user data
 
@@ -99,6 +103,10 @@ def myProfileAction(request):
     new_profile.my_last_name = data_in['last_name']  # Save inputted last name in the my_last_name field
     new_profile.my_email = data_in['email']  # Save inputted email in the my_email field
     new_profile.phone = data_in['phone']  # Save inputted phone number in the phone field
+    new_profile.address = data_in['address'] # Save inputs about address
+    new_profile.city = data_in['city']  # Save inputs about City
+    new_profile.state = data_in['state']  # Save inputs about State
+    new_profile.zip_code = data_in['zip_code']  # Save inputs about address
     new_profile.save()  # Save changes made to the UserProfile
     # update here
 

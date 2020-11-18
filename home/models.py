@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import ArrayField
 
 # Category Model: For creating policy categories
 class Category(models.Model):
@@ -35,6 +34,13 @@ class Comment(models.Model):
         return self.text
 
 
+class Favorite(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 # UserProfile Model: For associating custom user data with Google authenticated user profiles
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -46,14 +52,13 @@ class UserProfile(models.Model):
     city = models.CharField(max_length=100, default="")
     state = models.CharField(max_length=100, default="")
     zip_code = models.CharField(max_length=10, default="")
-    favorites = ArrayField(
-        models.CharField(max_length=255, blank=True),
-        blank=True
-    )
+    favorites = models.ManyToManyField(Favorite, blank=True)
 
 
     def __str__(self):
         return self.my_email
+
+
 
 
 # Suggestions Model: For creating templates with which users can suggest to be made into new templates

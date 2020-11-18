@@ -72,6 +72,7 @@ def myProfile(request):
         data['city'] = profile.city
         data['state'] = profile.state
         data['zip_code'] = profile.zip_code
+        data['favorites'] = profile.favorites
 
     # If user does not have user profile made, pull from the standard user data
 
@@ -107,6 +108,7 @@ def myProfileAction(request):
     new_profile.city = data_in['city']  # Save inputs about City
     new_profile.state = data_in['state']  # Save inputs about State
     new_profile.zip_code = data_in['zip_code']  # Save inputs about address
+    new_profile.favorites = list(data_in['favorites'])
     new_profile.save()  # Save changes made to the UserProfile
     # update here
 

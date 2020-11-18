@@ -110,7 +110,7 @@ def myProfileAction(request):
     new_profile.city = data_in['city']  # Save inputs about City
     new_profile.state = data_in['state']  # Save inputs about State
     new_profile.zip_code = data_in['zip_code']  # Save inputs about address
-    # new_profile.favorites = data_in['favorites'])
+    new_profile.favorites.set(data_in['favorites'])
     new_profile.save()  # Save changes made to the UserProfile
     # update here
 

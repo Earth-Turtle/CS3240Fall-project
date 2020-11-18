@@ -8,4 +8,5 @@ admin.site.register(Comment)
 admin.site.register(UserProfile)
 admin.site.register(Suggestions)
 admin.site.register(Favorite)
+
 # Register your models here.

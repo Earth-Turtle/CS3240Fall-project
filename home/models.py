@@ -34,13 +34,6 @@ class Comment(models.Model):
         return self.text
 
 
-class Favorite(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-
 # UserProfile Model: For associating custom user data with Google authenticated user profiles
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -52,13 +45,18 @@ class UserProfile(models.Model):
     city = models.CharField(max_length=100, default="")
     state = models.CharField(max_length=100, default="")
     zip_code = models.CharField(max_length=10, default="")
-    favorites = models.ManyToManyField(Favorite, blank=True)
 
 
     def __str__(self):
         return self.my_email
 
 
+class Favorite(models.Model):
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 # Suggestions Model: For creating templates with which users can suggest to be made into new templates

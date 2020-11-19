@@ -46,7 +46,6 @@ class UserProfile(models.Model):
     state = models.CharField(max_length=100, default="")
     zip_code = models.CharField(max_length=10, default="")
 
-
     def __str__(self):
         return self.my_email
 

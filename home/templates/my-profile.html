@@ -49,14 +49,14 @@
         {% for category in categories %}
             {% if category|title in favorites %}
                 <div class="form-check">
-                <input class="form-check-input" value="{{category}}" type="checkbox" name="favorites" checked>
+                <input class="form-check-input" value="{{category|title}}" type="checkbox" name="favorites[]" checked>
                 <label class="form-check-label">
                     {{category}}
                 </label>
                 </div>
             {% else %}
                 <div class="form-check">
-                <input class="form-check-input" value="{{category}}" type="checkbox" name="favorites">
+                <input class="form-check-input" value="{{category}}" type="checkbox" name="favorites[]">
                 <label class="form-check-label">
                     {{category}}
                 </label>

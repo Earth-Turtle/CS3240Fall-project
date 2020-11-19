@@ -5,7 +5,7 @@ from django.views import generic
 from .forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 
-from .models import Suggestions, Comment, UserProfile, Post, Category
+from .models import Suggestions, Comment, UserProfile, Post, Category, Favorite
 from django.contrib.auth.models import User
 
 from django.conf import settings
@@ -72,7 +72,10 @@ def myProfile(request):
         data['city'] = profile.city
         data['state'] = profile.state
         data['zip_code'] = profile.zip_code
-        #data['favorites'] = profile.favorites
+        favorites = Favorite.objects.filter(user=profile)
+        data['favorites'] = []
+        for fav in favorites:
+            data['favorites'].append(fav.name)
 
     # If user does not have user profile made, pull from the standard user data
 
@@ -82,6 +85,7 @@ def myProfile(request):
         data['last_name'] = request.user.last_name
 
     data['categories'] = list(Category.objects.all())
+    print(data['favorites'])
     return render(request, "my-profile.html", data)
 
 

@@ -56,7 +56,7 @@ class Favorite(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return str(self.name + '-' + self.user.user.username)
 
 
 # Suggestions Model: For creating templates with which users can suggest to be made into new templates

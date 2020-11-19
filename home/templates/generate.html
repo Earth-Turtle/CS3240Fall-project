@@ -57,7 +57,7 @@
         {% endfor %}
         <div class="form-group">
             <label><label for="id_message">Generated Message:</label></label>
-            <p><textarea name="message" cols="40" rows="10" required="" id="id_message">{{text}}</textarea></p>
+            <p><textarea name="message" cols="40" rows="10" required="" id="id_message" readonly>{{text}}</textarea></p>
         </div>
         <form class="form-inline my-2 my-lg-0">
             <a class="btn btn-primary" href="/contact/?text={{text}}" googl="true">Email Your Representative!</a>

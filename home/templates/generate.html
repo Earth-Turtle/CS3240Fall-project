@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<title>Email Page</title>
+<title>Generated Message Page</title>
 
 <style>
     .container{
@@ -36,7 +36,7 @@
 
         <div class="heading">
             <header class="heading">
-                <h4>Email Your Representative!</h4>
+                <h4>Generated Message!</h4>
             <br>
             </header>
         </div>
@@ -57,10 +57,11 @@
         {% endfor %}
         <div class="form-group">
             <label><label for="id_message">Generated Message:</label></label>
-            <p><textarea name="message" cols="40" rows="10" required="" id="id_message">{{text}}</textarea></p>
+            <p><textarea name="message" cols="40" rows="10" required="" id="id_message" readonly>{{text}}</textarea></p>
         </div>
-        <button type="reset" class="btn btn-secondary">Reset</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="btn btn-primary" href="/contact/?text={{text}}" googl="true">Email Your Representative!</a>
+        </form>
     </form>
 
 </div>

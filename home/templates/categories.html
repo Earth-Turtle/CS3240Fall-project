@@ -65,15 +65,15 @@
 
     {% if user.is_authenticated %}
       <div class="head1">
-        <h2>Civic Connect - Honda Civics</h2>
+        <h2>Civic Connect - Policy Categories</h2>
         <h5>View Templates Below!</h5>
-        <br>
+        <a href="/feedback" class="btn btn-primary">Don't see the category you're looking for? Click Here to Submit/Suggest a Template!</a>
       </div>
     {% else %}
-      <h2>Civic Connect - Honda Civics</h2>
-      <a href="/accounts/google/login/" class="btn btn-primary btn-lg">Login!</a>
+      <h2>Civic Connect - Policy Categories</h2>
+      <a href="/accounts/google/login/" class="btn btn-success btn-lg">Login to access content!</a>
       {% endif %}
-      <a href="/feedback" class="btn btn-primary">Submit/Suggest a Template?</a>
+
       </header>  
     </div>
     <!-- Page Features -->
@@ -106,7 +106,7 @@
             <img class="card-img-top" src="https://www.flaticon.com/svg/static/icons/svg/3143/3143616.svg" height="256" width="256" 
             style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px; padding-top: 15px" alt="">
                 <div class="card-footer">
-                    <a href="Healthcare/" class="btn btn-primary">Health Care </a>
+                    <a href="Healthcare/" class="btn btn-primary">Healthcare</a>
                 </div>
             </div>
         </div>

@@ -20,7 +20,9 @@ urlpatterns = [
     #ex: '/categories/'
     path('categories/', views.categories, name='categories'),
 
+
     #ex: '/categories/Education/'
+
     path('categories/<slug:categorySlug>/', views.singleCategory, name='singleCategory'),
 
     #ex: '/categories/Education/Education0/'
@@ -31,10 +33,13 @@ urlpatterns = [
     #POST path for adding a comment
     path('post-comment/', views.postComment, name='postComment'),
 
+
     path('my-profile/', views.myProfile, name='myProfile'),
     path('my-profile-action/', views.myProfileAction, name='myProfileAction'),
 
     path('thankyou/', views.thankyou, name='thankyou'),
-    path('contact/', views.contact_form, name='contact')
+    path('contact/', views.contact_form, name='contact'),
+    path('generate/', views.generate, name='generate'),
 
+    path('logout/', views.logout_view, name='logout'),
 ]

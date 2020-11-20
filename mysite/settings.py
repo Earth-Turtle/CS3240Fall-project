@@ -26,7 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'k+ye(unpaw+n%ao(k#050384ko$le7su6y6r+p=c0z4x%quq98'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','honda-civic-connect.herokuapp.com']
 
@@ -62,13 +63,13 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'mysite.urls'
 
 # Security settings
+# MAKE SURE THE NEXT THREE ARE SET TO TRUE WHEN DEPLOYING TO MASTER
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 3600
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
-
 
 
 TEMPLATES = [
@@ -94,7 +95,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {                                      
+    'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',   # Old SQLite database
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
@@ -184,4 +185,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), test_runner=False)
-

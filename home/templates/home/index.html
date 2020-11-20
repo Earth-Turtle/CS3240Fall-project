@@ -16,28 +16,36 @@
         display: inline-block;
     }
 
-    .button_container{
-        font-weight: 900;
-        background-color: rgba(84, 151, 45, 0.938);
-    }
-
-    .our_page_container{ 
+    .index_page_container{
         width: 100%; 
-        max-width: 600px; 
+        max-width: 1250px;
         margin: 100px auto; 
         text-align: center;
     }
 </style>
 
-<div class="our_page_container">
+
+<div class="index_page_container">
+
+    <!-- Page Header -->
     <div class="h_container">
         {% if user.is_authenticated %}
-            <p>Welcome, {{ user.first_name }}!</p>
+            <h1>Welcome, {{ user.first_name }}!</h1>
         {% else %}
-            <h1>Civic Connect - Honda Civics</h1>
+            <h1>Civic Connect: Contact Your Representatives About Policy Issues!</h1>
         {% endif %}
+        <br>
+        <br>
+        <br>
     </div>
-    <p>Click on one of the tabs at the top to get started!!</p>
+
+    <!-- Application Information -->
+    <br>
+    <p>Civic Connect is an application that puts you in contact with your representatives at the federal, state, or local level!</p>
+    <p>A Civic Connect account will allow you to access a number of pre-generated templates to contact your representatives in whichever way you see fit, whether that be by
+    email, phone, or letter!</p>
+    <p>Our service also includes ways for you to suggest new templates, or email your representative right from inside the application!</p>
+    <p>Click the green button at the top to login, or click on one of the tabs at the top to get started!!</p>
 </div>
 
 {% endblock content %}

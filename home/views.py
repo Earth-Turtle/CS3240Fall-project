@@ -5,7 +5,7 @@ from django.views import generic
 from .forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 
-from .models import Suggestions, Comment, UserProfile, Post, Category
+from .models import Suggestions, Comment, UserProfile, Post, Category, Favorite
 from django.contrib.auth.models import User
 
 from django.conf import settings
@@ -72,6 +72,11 @@ def myProfile(request):
         data['city'] = profile.city
         data['state'] = profile.state
         data['zip_code'] = profile.zip_code
+        favorites = Favorite.objects.filter(user=profile)
+        data['favorites'] = []
+        for fav in favorites:
+            if fav not in data['favorites']:
+                data['favorites'].append(fav.name)
 
     # If user does not have user profile made, pull from the standard user data
 
@@ -79,6 +84,8 @@ def myProfile(request):
         data['email'] = request.user.email
         data['first_name'] = request.user.first_name
         data['last_name'] = request.user.last_name
+
+    data['categories'] = list(Category.objects.all())
     return render(request, "my-profile.html", data)
 
 
@@ -94,7 +101,7 @@ def myProfileAction(request):
 
     # If the profile has not been made, create a new profile that extends the default user
     # profile from the authentication
-    except:
+    except UserProfile.DoesNotExist:
         new_profile = UserProfile()  # Create new user profile
         new_profile.user = User.objects.get(id=request.user.id)  # Populate user field with extension from default user
 
@@ -107,8 +114,22 @@ def myProfileAction(request):
     new_profile.city = data_in['city']  # Save inputs about City
     new_profile.state = data_in['state']  # Save inputs about State
     new_profile.zip_code = data_in['zip_code']  # Save inputs about address
+
+    # To check for favorites, first get all of the favorites data from the form
+    favorites_form = request.POST.getlist('favorites[]')
+
+    # We want to delete all previous favorites first. Filter by current user profile, and delete all of the favorites
+    # associated with that user.
+    Favorite.objects.filter(user=UserProfile.objects.get(user=request.user)).delete()
+
+    # Now, we want to add in all of the favorites the user has chosen.
+    for fav in favorites_form:
+        new_fav = Favorite()
+        new_fav.name = fav
+        new_fav.user = new_profile
+        new_fav.save() # Make sure to save each favorite
+
     new_profile.save()  # Save changes made to the UserProfile
-    # update here
 
     return redirect('/')
 

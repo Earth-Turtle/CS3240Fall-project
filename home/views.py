@@ -139,7 +139,6 @@ def contact_form(request):
     last_name = request.user.last_name
     form = ContactForm(initial={'email': email, 'name': first_name + ' ' + last_name})
     text = request.GET.get('text', '')
-    text = 'To whom it may concern, name is '+ first_name + ' ' + last_name+'.'+'\n\n\b'+text+'\n\nSincerely, \n'+ first_name + ' ' + last_name
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -185,12 +184,18 @@ def logout_view(request):
     return render(request, "logout.html")
 
 def generate(request):
-    email = request.user.email
-    first_name = request.user.first_name
-    last_name = request.user.last_name
-
+    user_profile = UserProfile.objects.get(user=request.user)
+    email = user_profile.my_email
+    first_name = user_profile.my_first_name
+    last_name = user_profile.my_last_name
+    phone = user_profile.phone
+    category = request.GET.get('category', '')
     text = request.GET.get('text', '')
-    text = 'To whom it may concern, name is '+ first_name + ' ' + last_name+'.'+'\n\n\b'+text+'\n\nSincerely, \n'+ first_name + ' ' + last_name
+    print(request)
+    text = 'To whom it may concern, \n\nMy name is '+ first_name + ' ' + last_name + \
+           ' and I am writing to you about the issue of ' + category + ':' + '\n\n\b' + text + \
+           '\n\nIf you wish to contact me, my phone number is ' + phone + ' and my email address is ' + email +\
+           '.\n\nSincerely, \n' + first_name + ' ' + last_name
     if request.method == 'POSTED':
         if form.is_valid():
             dataIn = request.POSTED.copy()

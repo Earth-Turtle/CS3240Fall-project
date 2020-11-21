@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load socialaccount %}
 {% block content %}
-<title>{{ get_category }} Template: {{ post }}</title>
+<title>{{ category }} Template: {{ post }}</title>
 
 
 <style>
@@ -37,7 +37,7 @@
                 </tr>
                 <tr><td colspan="100%">
                     <form class="form-inline my-2 my-lg-0">
-                        <a class="btn btn-primary" href="/generate/?text={{post.text}}" googl="true">Generate Your Template!</a>
+                        <a class="btn btn-primary" href="/generate/?text={{post.text}}&category={{ category }}" googl="true">Generate Your Template!</a>
                     </form>
                 </td></tr>
                 </tbody>

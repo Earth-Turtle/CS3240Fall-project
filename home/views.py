@@ -95,9 +95,11 @@ def myProfileAction(request):
     # Take in the data from the button press
     data_in = request.POST.copy()
 
-    # If the profile has been made, get the objects from the profile
+    # If the profile has been made, get the objects from the profile and delete current favorites (so that new ones
+    # will be added with the submission)
     try:
         new_profile = UserProfile.objects.get(user=request.user)
+        Favorite.objects.filter(user=UserProfile.objects.get(user=request.user)).delete()
 
     # If the profile has not been made, create a new profile that extends the default user
     # profile from the authentication
@@ -117,10 +119,6 @@ def myProfileAction(request):
 
     # To check for favorites, first get all of the favorites data from the form
     favorites_form = request.POST.getlist('favorites[]')
-
-    # We want to delete all previous favorites first. Filter by current user profile, and delete all of the favorites
-    # associated with that user.
-    Favorite.objects.filter(user=UserProfile.objects.get(user=request.user)).delete()
 
     # Now, we want to add in all of the favorites the user has chosen.
     for fav in favorites_form:

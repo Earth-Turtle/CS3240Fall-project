@@ -146,7 +146,7 @@ def contact_form(request):
             subject = f'Message from {form.cleaned_data["name"]}'
             dataIn = request.POST.copy()
             message = dataIn["message"]
-            sender = dataIn["email"]
+            sender = ("hondacivicsuva@gmail.com")
             recipient_email = dataIn["recipient_email"]
             recipients = [recipient_email]
             try:

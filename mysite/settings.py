@@ -180,7 +180,7 @@ EMAIL_HOST_USER = 'hondacivics'
 EMAIL_HOST_PASSWORD = 'hondacivics123456'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'hm4rq@virginia.edu'
+# DEFAULT_FROM_EMAIL = 'hondacivicsuva@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Activate Django-Heroku.

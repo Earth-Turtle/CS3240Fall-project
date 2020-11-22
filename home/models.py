@@ -50,6 +50,14 @@ class UserProfile(models.Model):
         return self.my_email
 
 
+class Favorite(models.Model):
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.name + '-' + self.user.user.username)
+
+
 # Suggestions Model: For creating templates with which users can suggest to be made into new templates
 class Suggestions(models.Model):
     name = models.CharField(max_length=200)

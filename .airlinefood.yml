@@ -4,8 +4,6 @@ python:
 install:
 - pip install -r requirements-travis.txt
 script:
-- python manage.py makemigrations
-- python manage.py migrate
 - python manage.py test --noinput
 deploy:
   provider: heroku

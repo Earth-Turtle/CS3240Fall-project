@@ -19,6 +19,7 @@ class CategoryCreationTests(TestCase):
         response = self.client.get(reverse('singleCategory', args=(test.slug,)), secure=True)
         self.assertEqual(response.status_code, 200)
 
+
 class PostCreationTests(TestCase):
 
     def testPostCreation(self):
@@ -26,6 +27,7 @@ class PostCreationTests(TestCase):
         test_post = createPost("Education Template 1", "asdf", test_cat, timezone.now(), "Education0")
         response = self.client.get(reverse('comment', args=(test_cat.slug, test_post.slug,)), secure=True)
         self.assertEqual(response.status_code, 200)
+
 
 
 """

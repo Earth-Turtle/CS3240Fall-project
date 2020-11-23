@@ -140,10 +140,10 @@ def contact_form(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            subject = f'Message from {form.cleaned_data["name"]}'
+            subject = f'Civic Connect Message from: {form.cleaned_data["name"]}'
             dataIn = request.POST.copy()
             message = dataIn["message"]
-            sender = dataIn["email"]
+            sender = ("hondacivicsuva@gmail.com")
             recipient_email = dataIn["recipient_email"]
             recipients = [recipient_email]
             try:

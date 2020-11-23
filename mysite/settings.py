@@ -174,13 +174,13 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfile')
 STATIC_URL = '/static/'
 
 
-SENDGRID_API_KEY = "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"
+SENDGRID_API_KEY = "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"
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'hondacivics'
-EMAIL_HOST_PASSWORD = 'hondacivics123456'
+EMAIL_HOST_PASSWORD = 'civicconnect12345'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'hm4rq@virginia.edu'
+# DEFAULT_FROM_EMAIL = 'hondacivicsuva@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Activate Django-Heroku.

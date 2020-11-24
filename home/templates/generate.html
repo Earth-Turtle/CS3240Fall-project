@@ -24,7 +24,7 @@
         text-align: center;
         background-color: rgb(233,236,239) ;
         border-radius: 10px;
-        height: 40px;
+        height: 80px;
         padding-top: 5px;
     }
 
@@ -37,24 +37,11 @@
         <div class="heading">
             <header class="heading">
                 <h4>Generated Message</h4>
+                <h5>Feel free to copy and paste this message for use! Or click the Email button below to send an email.</h5>
             <br>
             </header>
         </div>
-    <form action="" method="POST">
-        {% csrf_token %}
         <br>
-
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-
-        {% for field in form.visible_fields %}
-            <div class="form-group">
-                {{ field.errors }}
-                <label>{{ field.label_tag }}</label>
-                <p>{{ field }}</p>
-            </div>
-        {% endfor %}
         <div class="form-group">
             <label><label for="id_message">Generated Message:</label></label>
             <p><textarea name="message" cols="40" rows="10" required="" id="id_message" readonly>{{text}}</textarea></p>

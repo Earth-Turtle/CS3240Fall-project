@@ -135,6 +135,59 @@ def myProfileAction(request):
 
     return redirect('/')
 
+
+def feedback(request):
+    categories_list = list(Category.objects.all())
+
+    if request.method == "POST":
+        contact = Suggestions()
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        contact.name = name
+        contact.email = email
+        contact.subject = subject
+        contact.message = message
+        contact.save()
+        return redirect("/thankyou/")
+    return render(request, 'feedback.html', {'categories': categories_list})
+
+
+def thankyou(request):
+    return render(request, "thankyou.html")
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, "logout.html")
+
+
+def generate(request):
+    data_in = request.POST.copy()
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+        email = user_profile.my_email
+        first_name = user_profile.my_first_name
+        last_name = user_profile.my_last_name
+        phone = user_profile.phone
+
+    except UserProfile.DoesNotExist:
+        email = request.user.email
+        first_name = request.user.first_name
+        last_name = request.user.last_name
+        phone = '123-456-7890'
+
+    category = data_in['category']
+    text = data_in['text']
+    level = data_in['level']
+    text = 'To whom it may concern, \n\nMy name is '+ first_name + ' ' + last_name + \
+           ' and I am writing to you about the issue of ' + category + ':' + '\n\n\b' + text + \
+           '\n\nIf you wish to contact me, my phone number is ' + phone + ' and my email address is ' + email +\
+           '.\n\nSincerely, \n' + first_name + ' ' + last_name
+    return render(request, "generate.html", {'text': text, 'category': category, 'level': level})
+
+
 def contact_form(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -166,51 +219,3 @@ def contact_form(request):
 
 
 # Contact From/ Sendgrid template taken from: https://github.com/the-kodechamp/django_blog_tutorial/blob/master/blog/templates
-
-def feedback(request):
-    categories_list = list(Category.objects.all())
-
-    if request.method == "POST":
-        contact = Suggestions()
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
-        contact.name = name
-        contact.email = email
-        contact.subject = subject
-        contact.message = message
-        contact.save()
-        return redirect("/thankyou/")
-    return render(request, 'feedback.html', {'categories': categories_list})
-
-def thankyou(request):
-    return render(request, "thankyou.html")
-
-
-def logout_view(request):
-    logout(request)
-    return render(request, "logout.html")
-
-def generate(request):
-    try:
-        user_profile = UserProfile.objects.get(user=request.user)
-        email = user_profile.my_email
-        first_name = user_profile.my_first_name
-        last_name = user_profile.my_last_name
-        phone = user_profile.phone
-
-    except UserProfile.DoesNotExist:
-        email = request.user.email
-        first_name = request.user.first_name
-        last_name = request.user.last_name
-        phone = '123-456-7890'
-
-    category = request.GET.get('category', '')
-    text = request.GET.get('text', '')
-    print(request)
-    text = 'To whom it may concern, \n\nMy name is '+ first_name + ' ' + last_name + \
-           ' and I am writing to you about the issue of ' + category + ':' + '\n\n\b' + text + \
-           '\n\nIf you wish to contact me, my phone number is ' + phone + ' and my email address is ' + email +\
-           '.\n\nSincerely, \n' + first_name + ' ' + last_name
-    return render(request, "generate.html", { 'text': text})   

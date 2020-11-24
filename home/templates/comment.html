@@ -24,24 +24,44 @@
             </div>
         </div>
         <div class="row">
+            <form class="form-inline my-2 my-lg-0" method="post" action="/generate/">
+            {% csrf_token %}
             <table class="table table-hover">
-
                 <tbody>
+                <div class="form-group">
                 <tr>
                     <td>Title</td>
                     <td>{{post.title}}</td>
                 </tr>
+                <input type="hidden" name="category" value="{{category}}">
+                </div>
+                <div class="form-group">
                 <tr>
                     <td>Post</td>
                     <td style="white-space:pre-wrap; word-wrap:break-word">{{post.text}}</td>
                 </tr>
+                <input type="hidden" name="text" value="{{post.text}}">
+                </div>
+                <div class="form-group">
+                <tr>
+                    <td>Level of Government</td>
+                    <td>
+                    <select class="form-control" name="level">
+                        <option>Federal</option>
+                        <option>State</option>
+                        <option>Local</option>
+                    </select>
+                    </td>
+                </tr>
+                </div>
+                <div class="form-group">
                 <tr><td colspan="100%">
-                    <form class="form-inline my-2 my-lg-0">
-                        <a class="btn btn-primary" href="/generate/?text={{post.text}}&category={{ category }}" googl="true">Generate Your Template!</a>
-                    </form>
+                    <input class="btn btn-primary" type="submit" value="Generate Your Template!">
                 </td></tr>
+                </div>
                 </tbody>
             </table>
+            </form>
         </div>
     </div>
 

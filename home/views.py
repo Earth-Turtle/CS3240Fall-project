@@ -36,8 +36,14 @@ def comment(request, categorySlug, postSlug):
     get_category = Category.objects.get(slug=categorySlug)
     post = Post.objects.get(slug=postSlug)
     comments = list(Comment.objects.filter(post=post))
+    try: #Attempt pull from custom user data
+        user_profile = UserProfile.objects.get(user=request.user)
+        name = user_profile.my_first_name + ' ' + user_profile.my_last_name
 
-    return render(request, "comment.html", {'post': post, 'comments': comments, 'category': get_category})
+    except UserProfile.DoesNotExist: #Else pull from request user data
+        name = request.user.first_name + ' ' + request.user.last_name
+
+    return render(request, "comment.html", {'post': post, 'comments': comments, 'category': get_category, 'name': name})
 
 
 def postComment(request):
@@ -46,7 +52,6 @@ def postComment(request):
     name = data_in['name']
     comments = data_in['comments']
 
-    print("Debug:", post, name, comments)
     comment_model = Comment()
     comment_model.post = Post.objects.get(id=post)
     comment_model.author = name
@@ -79,7 +84,6 @@ def myProfile(request):
                 data['favorites'].append(fav.name)
 
     # If user does not have user profile made, pull from the standard user data
-
     except UserProfile.DoesNotExist:  # change to extend exception?
         data['email'] = request.user.email
         data['first_name'] = request.user.first_name
@@ -132,9 +136,16 @@ def myProfileAction(request):
     return redirect('/')
 
 def contact_form(request):
-    email = request.user.email
-    first_name = request.user.first_name
-    last_name = request.user.last_name
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+        email = user_profile.my_email
+        first_name = user_profile.my_first_name
+        last_name = user_profile.my_last_name
+
+    except UserProfile.DoesNotExist:
+        email = request.user.email
+        first_name = request.user.first_name
+        last_name = request.user.last_name
     form = ContactForm(initial={'email': email, 'name': first_name + ' ' + last_name})
     text = request.GET.get('text', '')
     if request.method == 'POST':
@@ -182,11 +193,19 @@ def logout_view(request):
     return render(request, "logout.html")
 
 def generate(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    email = user_profile.my_email
-    first_name = user_profile.my_first_name
-    last_name = user_profile.my_last_name
-    phone = user_profile.phone
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+        email = user_profile.my_email
+        first_name = user_profile.my_first_name
+        last_name = user_profile.my_last_name
+        phone = user_profile.phone
+
+    except UserProfile.DoesNotExist:
+        email = request.user.email
+        first_name = request.user.first_name
+        last_name = request.user.last_name
+        phone = '123-456-7890'
+
     category = request.GET.get('category', '')
     text = request.GET.get('text', '')
     print(request)
@@ -194,13 +213,4 @@ def generate(request):
            ' and I am writing to you about the issue of ' + category + ':' + '\n\n\b' + text + \
            '\n\nIf you wish to contact me, my phone number is ' + phone + ' and my email address is ' + email +\
            '.\n\nSincerely, \n' + first_name + ' ' + last_name
-    if request.method == 'POSTED':
-        if form.is_valid():
-            dataIn = request.POSTED.copy()
-            message = dataIn["message"]
-            try:
-                send_mail(subject, message, fail_silently=True)
-            except BadHeaderError:
-                return HttpResponse('Invalid header found')
-            return redirect("/thankyou/")
     return render(request, "generate.html", { 'text': text})   

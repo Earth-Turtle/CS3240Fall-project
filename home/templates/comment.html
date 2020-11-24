@@ -18,6 +18,7 @@
 
 <body>
     <div class="container">
+        {% if user.is_authenticated %}
         <div class="row">
             <div class="heading">
                 <h4>Civic Connect - View {{post.title}}</h4>
@@ -116,6 +117,10 @@
             {% endfor %}
             </tbody>
         </table>
+      {% else %}
+      <h2>Civic Connect - {{category}} Templates</h2>
+      <a href="/accounts/google/login/" class="btn btn-success btn-lg">Login to access content!</a>
+      {% endif %}
     </div>
 </body>
 

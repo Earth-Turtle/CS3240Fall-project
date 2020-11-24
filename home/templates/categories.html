@@ -69,10 +69,7 @@
         <h5>View Templates Below!</h5>
         <a href="/feedback" class="btn btn-primary">Don't see the category you're looking for? Click Here to Submit/Suggest a Template!</a>
       </div>
-    {% else %}
-      <h2>Civic Connect - Policy Categories</h2>
-      <a href="/accounts/google/login/" class="btn btn-success btn-lg">Login to access content!</a>
-      {% endif %}
+
 
       </header>  
     </div>
@@ -127,6 +124,11 @@
     <!-- /.row -->
 
     </div>
+
+      {% else %}
+      <h2>Civic Connect - Policy Categories</h2>
+      <a href="/accounts/google/login/" class="btn btn-success btn-lg">Login to access content!</a>
+      {% endif %}
 </body>
 
 {% endblock content %}

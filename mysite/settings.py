@@ -101,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         # Password removed for security
         # User removed for security
-        'PORT': '5432',
+        # PORT removed for security
         # AWS host removed for security
         # DB name removed for security
         'CONN_MAX_AGE': 300,
@@ -176,9 +176,9 @@ STATIC_URL = '/static/'
 
 # SendGrid API key removed for security
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'hondacivics'
+# EMAIL_HOST_USED removed for security
 # EMAIL_HOST_PASSWORD removed for security
-EMAIL_PORT = 587
+# EMAIL_PORT removed for security
 EMAIL_USE_TLS = True
 # DEFAULT_FROM_EMAIL = 'hondacivicsuva@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

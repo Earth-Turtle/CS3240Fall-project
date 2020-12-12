@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k+ye(unpaw+n%ao(k#050384ko$le7su6y6r+p=c0z4x%quq98'
+# SECRET_KEY removed for security
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -99,11 +99,11 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',   # Old SQLite database
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'PASSWORD':'1213252e06c6b9f5893c285268a0c5581f703cb8261d9d014ffd848e2350a97b',
-        'USER': 'rszcsxrzupucrl',
+        # Password removed for security
+        # User removed for security
         'PORT': '5432',
-        'HOST': 'ec2-52-200-134-180.compute-1.amazonaws.com',
-        'NAME': 'd45u3ocid5s1vl',
+        # AWS host removed for security
+        # DB name removed for security
         'CONN_MAX_AGE': 300,
     }
 }
@@ -174,10 +174,10 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfile')
 STATIC_URL = '/static/'
 
 
-SENDGRID_API_KEY = "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"
+# SendGrid API key removed for security
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'hondacivics'
-EMAIL_HOST_PASSWORD = 'civicconnect12345'
+# EMAIL_HOST_PASSWORD removed for security
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # DEFAULT_FROM_EMAIL = 'hondacivicsuva@gmail.com'

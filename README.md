@@ -2,7 +2,10 @@
 Created by Team 1-13
 DJ Exel, Alexander Judge, Hasan Mukati, and Nicholas O'Connor
 ## Basic overview
-The goal of this webapp is to provide users a way to contact their representatives using user-created templates that other users can comment on.
+The goal of this webapp is to provide users a way to contact their representatives using user-created templates that other users can comment on. The app can be found at https://honda-civic-connect.herokuapp.com/
+## Note from Nicholas O'Connor: 
+This is the source code of the project at the state of it's final submission. However, various API keys and passwords have been removed from mysite/settings.py, so as not to expose them on a public repository. This repo is meant to be a showcase of work I have completed as part of a group project.
+
 ##  Usage
 ### Login
 Click the top-right green button to login using your Google account. Once logged in, you can click the red button to log out.
